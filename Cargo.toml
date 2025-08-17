@@ -1,0 +1,19 @@
+[package]
+name = "hoa-projection"
+version = "0.1.0"
+edition = "2024"
+
+default-run = "hoa-projection"
+
+[[bin]]
+name = "hoa-projection"
+path = "src/main.rs"
+
+[[bin]]
+name = "distribute"
+path = "src/bin/distribute.rs"
+
+[dependencies]
+rust_decimal = { version = "1.37.2", features = ["macros"] }
+tabled = { version = "0.20", features = ["ansi"] }
+owo-colors = "4.0"
