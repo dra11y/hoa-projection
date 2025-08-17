@@ -7,11 +7,13 @@ use tabled::{
     settings::{Alignment, Style},
 };
 
-// Roxanne's figures
-// 1,048,374 -> 1,050,672
-// 50,616 -> 51,984
+// Westwind's figures:
+const BUDGET_2026_WITHOUT_ROUNDING: Decimal = dec!(1_048_374);
+// Something is wrong with this figure:
+// No way they came up with $2298 increase in assessments when
+// the rounded figures result in a decrease.
+const BUDGET_2026_WITH_ROUNDING: Decimal = dec!(1_050_672);
 
-//
 const BR1: &str = "1BR";
 const BR2: &str = "2BR";
 const BR3: &str = "3BR";
@@ -96,9 +98,12 @@ fn format_amount(value: Decimal) -> String {
 fn main() {
     println!("2026: Roxanne's UNIT assessment figures:");
     println!("Table Assumptions:");
-    println!("  - without rounding: 1,048,374");
-    println!("  -    with rounding: 1,050,672");
-    println!("  -       DIFFERENCE:     2,298");
+    println!("  - without rounding: {BUDGET_2026_WITHOUT_ROUNDING}");
+    println!("  -    with rounding: {BUDGET_2026_WITH_ROUNDING}");
+    println!(
+        "  -       DIFFERENCE:    {}",
+        BUDGET_2026_WITH_ROUNDING - BUDGET_2026_WITHOUT_ROUNDING
+    );
     println!("Assumption: Same # of each type of unit (because we can't find these numbers).");
     let mut timeseries: BTreeMap<String, Vec<YearData>> = BTreeMap::new();
     let mut total_without_rounding = dec!(0.);
